@@ -1,0 +1,3 @@
+file(GLOB_RECURSE PID_SOURCES "*.cc")
+file(GLOB_RECURSE PID_HEADERS "*.h")
+add_library(PID ${PID_SOURCES})

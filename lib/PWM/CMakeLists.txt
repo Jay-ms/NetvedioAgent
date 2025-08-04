@@ -1,0 +1,3 @@
+file(GLOB_RECURSE PWM_SOURCES "*.cc")
+file(GLOB_RECURSE PWM_HEADERS "*.h")
+add_library(PWM ${PWM_SOURCES} ${PWM_HEADERS})
