@@ -2,7 +2,7 @@ cmake_minimum_required(VERSION 3.10)
 
 # Processing Parameters
 set(LIBC_TYPE "uclibc")
-set(PROJECT_DIR "/home/mydrivers/08_multi_thread")
+set(PROJECT_DIR "/home/mydrivers/NetvedioAgent")
 set(PROJECT_NAME "NetvedioAgent")
 message(STATUS "Selected libc type: ${LIBC_TYPE}")
 
