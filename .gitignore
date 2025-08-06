@@ -1,4 +1,5 @@
 # ignore
 /build
 lib/uclibc/librockchip_mpp.so*
-make.sh
+# make.sh
+# ignore
