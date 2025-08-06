@@ -92,11 +92,11 @@ void capture_thread()
             if (frame_queue.size() >= MAX_QUEUE_SIZE)
             {
                 RK_MPI_VI_ReleaseChnFrame(0, 0, &frame_queue.front());  //  Release Frame from VI
-                frame_queue.pop();
+                frame_queue.pop();                                      // Remove the oldest frame from the queue
             }
-            frame_queue.push(stViFrame);
+            frame_queue.push(stViFrame);                                // Add the new frame to the queue
             lock.unlock();
-            cv_frame_queue.notify_one();
+            cv_frame_queue.notify_one();                                // Notify the processing thread that a new frame is available
         }
         end_time = clock();
         capture_fps = ((float)CLOCKS_PER_SEC / (end_time - start_time));
@@ -109,7 +109,7 @@ void process_thread(rknn_app_context_t* app_retinaface_ctx, rknn_app_context_t* 
                     RK_U32* H264_TimeRef, rtsp_demo_handle g_rtsplive,rtsp_session_handle g_rtsp_session)
 {
 
-    float min_norm = 2.0f;
+    float min_norm = 1.1f;
     int min_norm_index = 0;
     //Retinaface
     int retina_width    = 640;
@@ -121,11 +121,11 @@ void process_thread(rknn_app_context_t* app_retinaface_ctx, rknn_app_context_t* 
 
     int ret;
     RK_S32 s32Ret;
-    object_detect_result_list od_results;
+    object_detect_result_list od_results;                       // List of face detection results
     char show_text[12];
     char fps_text[32]; 
 
-    float* out_fp32 = (float*)malloc(sizeof(float) * 128); 
+    float* out_fp32 = (float*)malloc(sizeof(float) * 128);      // Face feature vector to be detected
 
     clock_t start_time;
     clock_t end_time;
@@ -136,11 +136,11 @@ void process_thread(rknn_app_context_t* app_retinaface_ctx, rknn_app_context_t* 
         start_time = clock();
         VIDEO_FRAME_INFO_S stViFrame;
         std::unique_lock<std::mutex> lock(mtx_frame_queue);
-        cv_frame_queue.wait(lock, [] {return !frame_queue.empty() || stop_flag; });
+        cv_frame_queue.wait(lock, [] {return !frame_queue.empty() || stop_flag; });     // Wait for a new frame to be available or stop signal
         if(stop_flag) break;
-        while(frame_queue.size() > 1)
+        while(frame_queue.size() > 1)       // Keep only the most recent frame
         {
-            RK_MPI_VI_ReleaseChnFrame(0, 0, &frame_queue.front());
+            RK_MPI_VI_ReleaseChnFrame(0, 0, &frame_queue.front());  // Release the oldest frame if the queue is full
             frame_queue.pop();
         }
         stViFrame = frame_queue.front();
@@ -195,7 +195,7 @@ void process_thread(rknn_app_context_t* app_retinaface_ctx, rknn_app_context_t* 
         }
 
         // Servo Control
-        if(od_results.count > 0)    
+        if(od_results.count > 0 && min_norm < 1.1f)
         {
             int index = min_norm_index;
             object_detect_result *det_result = &(od_results.results[index]);
@@ -209,6 +209,7 @@ void process_thread(rknn_app_context_t* app_retinaface_ctx, rknn_app_context_t* 
 
             printf("@ (%d %d %d %d) %.3f\n",sX,sY,eX,eY,min_norm);      
             sprintf(show_text,"norm=%f",min_norm);
+            printf("norm: %.3f, index: %d\n", min_norm, index);
             cv::putText(*frame, show_text, cv::Point(sX, sY - 8),cv::FONT_HERSHEY_SIMPLEX, 0.5, cv::Scalar(0,255,0), 1);
 
             int center_x = (sX + eX) / 2;
@@ -216,8 +217,8 @@ void process_thread(rknn_app_context_t* app_retinaface_ctx, rknn_app_context_t* 
             PID_Calc(&yaw_pid, 320, center_x);
             PID_Calc(&pitch_pid, 240, center_y);
 
-            printf("yaw PID output: %.2f, Servo angle: %d\n", yaw_pid.output, yaw_servo_angle.load());
-            printf("pitch PID output: %.2f, Servo angle: %d\n", pitch_pid.output, pitch_servo_angle.load());
+            // printf("yaw PID output: %.2f, Servo angle: %d\n", yaw_pid.output, yaw_servo_angle.load());
+            // printf("pitch PID output: %.2f, Servo angle: %d\n", pitch_pid.output, pitch_servo_angle.load());
 
             if(!servo_mode)
             {
@@ -228,7 +229,7 @@ void process_thread(rknn_app_context_t* app_retinaface_ctx, rknn_app_context_t* 
                 
                 yaw_servo_set_angle(yaw_servo_angle);
                 pitch_servo_set_angle(pitch_servo_angle);
-                printf("yaw_servo_angle: %d, pitch_servo_angle: %d\n", yaw_servo_angle.load(), pitch_servo_angle.load());
+                // printf("yaw_servo_angle: %d, pitch_servo_angle: %d\n", yaw_servo_angle.load(), pitch_servo_angle.load());
             }
             
             min_norm = 2.0f;
@@ -295,8 +296,8 @@ int main(int argc, char **argv)
     int facenet_width   = 160;
     int facenet_height  = 160;
 
-    rknn_app_context_t app_retinaface_ctx;
-    rknn_app_context_t app_facenet_ctx; 
+    rknn_app_context_t app_retinaface_ctx;          // 人脸检测上下文 (检测出画面中的所有人脸)
+    rknn_app_context_t app_facenet_ctx;             // 人脸识别上下文 (识别出画面中的人脸是否为目标人脸)
 
     memset(&app_retinaface_ctx, 0, sizeof(rknn_app_context_t));
     memset(&app_facenet_ctx, 0, sizeof(rknn_app_context_t));
@@ -389,8 +390,8 @@ int main(int argc, char **argv)
     pitch_servo_set_angle(pitch_servo_angle);
 
     // PID Init
-    PID_Init(&yaw_pid, 0.75, 0.04, 0.12, 50, 300.0); 
-    PID_Init(&pitch_pid, 0.80, 0.01, 0.10, 30, 220.0);
+    PID_Init(&yaw_pid, 0.85, 0.001, 0, 10, 300.0); 
+    PID_Init(&pitch_pid, 0.80, 0.001, 0, 5, 220.0);
 
     // tcp client init
     int sockfd_client = tcpclient_init();
