@@ -4,7 +4,7 @@
   <img src="https://img.shields.io/badge/Platform-Luckfox%20PICO%20RV1106-blue" alt="Platform">
   <img src="https://img.shields.io/badge/AI-RetinaFace%20+%20FaceNet-green" alt="AI">
   <img src="https://img.shields.io/badge/Protocol-RTSP-orange" alt="Protocol">
-  <img src="https://img.shields.io/badge/License-MIT-yellow" alt="License">
+  <img src="https://img.shields.io/badge/License-CC%20BY--NC%204.0-yellow" alt="License">
 </div>
 
 ## 硬件平台 ?
@@ -129,14 +129,12 @@ ssh root@[设备IP]
 
 ## 开源协议 :page_facing_up:
 
-本项目采用 [MIT License](https://opensource.org/licenses/MIT) 开源协议。
+本项目遵循 CC BY-NC 4.0 开源协议，详细内容请见 [LICENSE](LICENSE)。
 
 ---
 
 <div align="center">
   
 ### 如果这个项目对你有帮助，请给个 Star 支持一下！ :star:
-
-**项目地址**: [NetvedioAgent](https://github.com/Jay-ms/NetvedioAgent) :link:
 
 </div>
