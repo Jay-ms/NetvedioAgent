@@ -40,7 +40,6 @@
 ### ? 线程安全
 `frame_queue` 队列为共享资源，使用互斥锁和条件变量保证线程安全，防止数据竞争。系统结束时等待所有线程正常结束，释放 RKMPI 资源和模型上下文。
 
-
 ## ? AI 模型工作流程
 
 ### ? 模型初始化
@@ -70,7 +69,6 @@ init_retinaface_facenet_model(model_path, model_path2, &app_retinaface_ctx, &app
 - **解决方案**: 
   - 调整欧氏距离阈值 `min_norm`
   - 使用高质量的目标人脸照片
-
 
 ## ? 快速部署
 
