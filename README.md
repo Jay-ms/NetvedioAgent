@@ -1,4 +1,4 @@
-# NetvedioAgent - 智能视频跟踪系统 ?
+# NetvedioAgent
 
 <div align="center">
   <img src="https://img.shields.io/badge/Platform-Luckfox%20PICO%20RV1106-blue" alt="Platform">
