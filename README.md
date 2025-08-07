@@ -1,10 +1,10 @@
 # ? NetvedioAgent - 智能视频跟踪系统
 
 <div align="center">
-  <img src="https://img.shields.io/badge/Platform-Luckfox%20PICO%20RV1106-blue.svg" alt="Platform">
-  <img src="https://img.shields.io/badge/AI-RetinaFace%20%2B%20FaceNet-green.svg" alt="AI">
-  <img src="https://img.shields.io/badge/Protocol-RTSP-orange.svg" alt="Protocol">
-  <img src="https://img.shields.io/badge/License-MIT-yellow.svg" alt="License">
+  <img src="https://img.shields.io/badge/Platform-Luckfox%20PICO%20RV1106-blue" alt="Platform">
+  <img src="https://img.shields.io/badge/AI-RetinaFace%20+%20FaceNet-green" alt="AI">
+  <img src="https://img.shields.io/badge/Protocol-RTSP-orange" alt="Protocol">
+  <img src="https://img.shields.io/badge/License-MIT-yellow" alt="License">
 </div>
 
 ## ? 硬件平台
