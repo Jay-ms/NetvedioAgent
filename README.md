@@ -11,9 +11,9 @@
 
 | 组件 | 型号 | 描述 |
 |------|------|------|
-| **主控板** ? | Luckfox-PICO RV1106 | 高性能嵌入式AI开发板 |
-| **摄像头** ? | SC3366 | 高清图像传感器 |
-| **云台** ?? | SG90舵机云台 | 二轴转动云台系统 |
+| **主控板** :computer: | Luckfox-PICO RV1106 | 高性能嵌入式AI开发板 |
+| **摄像头** :camera: | SC3366 | 高清图像传感器 |
+| **云台** :gear: | SG90舵机云台 | 二轴转动云台系统 |
 
 ## 项目概述 ?
 
@@ -21,11 +21,11 @@
 
 ### 核心特性 :sparkles:
 
-- **双模型协作**: RetinaFace 人脸检测 + FaceNet 特征提取 :brain:
-- **实时视频流**: RKMPI 硬件编码 + RTSP 网络推流 :satellite:
-- **智能跟踪**: PID 控制算法实现精准云台跟随 :dart:
-- **双工作模式**: 自动跟踪 + 手动控制无缝切换 :arrows_counterclockwise:
-- **网络通信**: TCP 协议实现客户端与服务端实时交互 :globe_with_meridians:
+- **双模型协作**: RetinaFace 人脸检测 + FaceNet 特征提取 
+- **实时视频流**: RKMPI 硬件编码 + RTSP 网络推流 
+- **智能跟踪**: PID 控制算法实现精准云台跟随 
+- **双工作模式**: 自动跟踪 + 手动控制无缝切换 
+- **网络通信**: TCP 协议实现客户端与服务端实时交互
 
 ## 系统工作原理 :arrows_counterclockwise:
 
@@ -33,9 +33,9 @@
 加载 RetinaFace 和 FaceNet 模型，配置 RKMPI、舵机驱动、TCP 服务，初始化 PID 控制器，使用 FaceNet 提取目标人脸特征向量。
 
 ### 多线程架构 :thread:
-- **图像捕获线程** :camera:: 通过 RK_MPI_VI 获取摄像头帧，存入 `frame_queue` 队列，队列满时自动清理最早帧
-- **图像处理线程** :brain:: 从队列获取最新帧，进行 RetinaFace 人脸检测和 FaceNet 特征匹配，PID 控制云台跟随目标，RKMPI 编码并 RTSP 推流
-- **TCP 通信线程** :globe_with_meridians:: 监听客户端控制指令，处理模式切换（自动/手动）和云台控制命令
+- **图像捕获线程** : 通过 RK_MPI_VI 获取摄像头帧，存入 `frame_queue` 队列，队列满时自动清理最早帧
+- **图像处理线程** : 从队列获取最新帧，进行 RetinaFace 人脸检测和 FaceNet 特征匹配，PID 控制云台跟随目标，RKMPI 编码并 RTSP 推流
+- **TCP 通信线程** : 监听客户端控制指令，处理模式切换（自动/手动）和云台控制命令
 
 ### 线程安全 :lock:
 `frame_queue` 队列为共享资源，使用互斥锁和条件变量保证线程安全，防止数据竞争。系统结束时等待所有线程正常结束，释放 RKMPI 资源和模型上下文。
