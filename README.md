@@ -7,7 +7,7 @@
   <img src="https://img.shields.io/badge/License-CC%20BY--NC%204.0-yellow" alt="License">
 </div>
 
-## 硬件平台 ?
+## 硬件平台 :wrench:
 
 | 组件 | 型号 | 描述 |
 |------|------|------|
@@ -15,7 +15,7 @@
 | **摄像头** :camera: | SC3366 | 高清图像传感器 |
 | **云台** :gear: | SG90舵机云台 | 二轴转动云台系统 |
 
-## 项目概述 ?
+## 项目概述 :book:
 
 **NetvedioAgent** 是一个基于 Luckfox-PICO RV1106 平台的智能视频跟踪服务端系统。本项目集成了先进的人脸识别技术、高效的视频编码和网络传输能力，为用户提供完整的智能监控解决方案。
 
