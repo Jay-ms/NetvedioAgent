@@ -1,8 +1,144 @@
-# NetvedioAgent
-## ç¡¬ä»¶å¹³å°
-- **å¼€å‘æ¿:Luckfox-PICO RV1106**
-- **æ‘„åƒå¤´:SC3366**
-- **äº‘å°:SG90èˆµæœºäº‘å°**
+# ? NetvedioAgent - ÖÇÄÜÊÓÆµ¸ú×ÙÏµÍ³
 
-## æ¦‚è¿°
-* è¿™æ˜¯å…³äºŽNetvedioPlayerçš„æœåŠ¡ç«¯å·¥ç¨‹ï¼Œä¸»è¦å®žçŽ°äº†äººè„¸è¯†åˆ«è·Ÿè¸ªæ¨¡åž‹ç®—æ³•(RetinaFace + FaceNet)ã€RKMPIç¼–ç ã€RTSPè§†é¢‘æŽ¨æµåŠå®žçŽ°å®¢æˆ·ç«¯æœåŠ¡ç«¯é—´è¿›ç¨‹é€šä¿¡ï¼ˆå®žçŽ°å¯¹æ‘„åƒå¤´äº‘å°æŽ§åˆ¶ï¼Œä»¥æ‰©å¤§è§†è§’ï¼‰ï¼ŒåŒæ—¶å…¶æ”¯æŒä¸¤ç§å·¥ä½œæ¨¡å¼ï¼Œä¸€ç§æ˜¯äººè„¸ç®—æ³•è¯†åˆ«è‡ªåŠ¨è·Ÿè¸ªæ¨¡å¼ï¼ˆä¾é ç®—æ³•æ¨¡åž‹ï¼‰ï¼Œå¦ä¸€ç§æ˜¯æ‰‹åŠ¨æŽ§åˆ¶æ¨¡å¼ï¼ˆä¾é ç½‘ç»œé€šä¿¡æŽ§åˆ¶äº‘å°è¿åŠ¨ï¼‰ã€‚
+<div align="center">
+  <img src="https://img.shields.io/badge/Platform-Luckfox%20PICO%20RV1106-blue.svg" alt="Platform">
+  <img src="https://img.shields.io/badge/AI-RetinaFace%20%2B%20FaceNet-green.svg" alt="AI">
+  <img src="https://img.shields.io/badge/Protocol-RTSP-orange.svg" alt="Protocol">
+  <img src="https://img.shields.io/badge/License-MIT-yellow.svg" alt="License">
+</div>
+
+## ? Ó²¼þÆ½Ì¨
+
+| ×é¼þ | ÐÍºÅ | ÃèÊö |
+|------|------|------|
+| ?? **Ö÷¿Ø°å** | Luckfox-PICO RV1106 | ¸ßÐÔÄÜÇ¶ÈëÊ½AI¿ª·¢°å |
+| ? **ÉãÏñÍ·** | SC3366 | ¸ßÇåÍ¼Ïñ´«¸ÐÆ÷ |
+| ?? **ÔÆÌ¨** | SG90¶æ»úÔÆÌ¨ | ¶þÖá×ª¶¯ÔÆÌ¨ÏµÍ³ |
+
+## ? ÏîÄ¿¸ÅÊö
+
+**NetvedioAgent** ÊÇÒ»¸ö»ùÓÚ Luckfox-PICO RV1106 Æ½Ì¨µÄÖÇÄÜÊÓÆµ¸ú×Ù·þÎñ¶ËÏµÍ³¡£±¾ÏîÄ¿¼¯³ÉÁËÏÈ½øµÄÈËÁ³Ê¶±ð¼¼Êõ¡¢¸ßÐ§µÄÊÓÆµ±àÂëºÍÍøÂç´«ÊäÄÜÁ¦£¬ÎªÓÃ»§Ìá¹©ÍêÕûµÄÖÇÄÜ¼à¿Ø½â¾ö·½°¸¡£
+
+### ? ºËÐÄÌØÐÔ
+
+- ? **Ë«Ä£ÐÍÐ­×÷**: RetinaFace ÈËÁ³¼ì²â + FaceNet ÌØÕ÷ÌáÈ¡
+- ? **ÊµÊ±ÊÓÆµÁ÷**: RKMPI Ó²¼þ±àÂë + RTSP ÍøÂçÍÆÁ÷  
+- ? **ÖÇÄÜ¸ú×Ù**: PID ¿ØÖÆËã·¨ÊµÏÖ¾«×¼ÔÆÌ¨¸úËæ
+- ? **Ë«¹¤×÷Ä£Ê½**: ×Ô¶¯¸ú×Ù + ÊÖ¶¯¿ØÖÆÎÞ·ìÇÐ»»
+- ? **ÍøÂçÍ¨ÐÅ**: TCP Ð­ÒéÊµÏÖ¿Í»§¶ËÓë·þÎñ¶ËÊµÊ±½»»¥
+
+## ? ÏµÍ³¹¤×÷Ô­Àí
+
+### ? ³õÊ¼»¯½×¶Î
+¼ÓÔØ RetinaFace ºÍ FaceNet Ä£ÐÍ£¬ÅäÖÃ RKMPI¡¢¶æ»úÇý¶¯¡¢TCP ·þÎñ£¬³õÊ¼»¯ PID ¿ØÖÆÆ÷£¬Ê¹ÓÃ FaceNet ÌáÈ¡Ä¿±êÈËÁ³ÌØÕ÷ÏòÁ¿¡£
+
+### ? ¶àÏß³Ì¼Ü¹¹
+- **? Í¼Ïñ²¶»ñÏß³Ì**: Í¨¹ý RK_MPI_VI »ñÈ¡ÉãÏñÍ·Ö¡£¬´æÈë `frame_queue` ¶ÓÁÐ£¬¶ÓÁÐÂúÊ±×Ô¶¯ÇåÀí×îÔçÖ¡
+- **? Í¼Ïñ´¦ÀíÏß³Ì**: ´Ó¶ÓÁÐ»ñÈ¡×îÐÂÖ¡£¬½øÐÐ RetinaFace ÈËÁ³¼ì²âºÍ FaceNet ÌØÕ÷Æ¥Åä£¬PID ¿ØÖÆÔÆÌ¨¸úËæÄ¿±ê£¬RKMPI ±àÂë²¢ RTSP ÍÆÁ÷
+- **? TCP Í¨ÐÅÏß³Ì**: ¼àÌý¿Í»§¶Ë¿ØÖÆÖ¸Áî£¬´¦ÀíÄ£Ê½ÇÐ»»£¨×Ô¶¯/ÊÖ¶¯£©ºÍÔÆÌ¨¿ØÖÆÃüÁî
+
+### ? Ïß³Ì°²È«
+`frame_queue` ¶ÓÁÐÎª¹²Ïí×ÊÔ´£¬Ê¹ÓÃ»¥³âËøºÍÌõ¼þ±äÁ¿±£Ö¤Ïß³Ì°²È«£¬·ÀÖ¹Êý¾Ý¾ºÕù¡£ÏµÍ³½áÊøÊ±µÈ´ýËùÓÐÏß³ÌÕý³£½áÊø£¬ÊÍ·Å RKMPI ×ÊÔ´ºÍÄ£ÐÍÉÏÏÂÎÄ¡£
+
+
+## ? AI Ä£ÐÍ¹¤×÷Á÷³Ì
+
+### ? Ä£ÐÍ³õÊ¼»¯
+```cpp
+init_retinaface_facenet_model(model_path, model_path2, &app_retinaface_ctx, &app_facenet_ctx);
+```
+
+**Ö÷Òª²½Öè:**
+1. ¼ÓÔØ RetinaFace ºÍ FaceNet Ä£ÐÍÎÄ¼þ
+2. »ñÈ¡Ä£ÐÍÊäÈëÊä³öÕÅÁ¿ÊôÐÔ
+3. ·ÖÅäÄ£ÐÍÍÆÀíÄÚ´æ¿Õ¼ä
+4. ÅäÖÃÉÏÏÂÎÄ½á¹¹Ìå²ÎÊý
+
+### ? Ä¿±êÌØÕ÷ÌáÈ¡
+1. **Í¼ÏñÔ¤´¦Àí**: Letterbox Ëõ·Å£¬±£³Ö¿í¸ß±È
+2. **FaceNet ÍÆÀí**: ÌáÈ¡Ä¿±êÈËÁ³ÌØÕ÷ÏòÁ¿
+3. **ÌØÕ÷¹éÒ»»¯**: Éú³É `reference_out_fp32` ²Î¿¼ÌØÕ÷
+
+### ? ÊµÊ±ÍÆÀíÁ÷³Ì
+1. **ÈËÁ³¼ì²â**: RetinaFace ¼ì²âÍ¼ÏñÖÐËùÓÐÈËÁ³
+2. **ÌØÕ÷ÌáÈ¡**: ¶ÔÃ¿¸ö¼ì²âµ½µÄÈËÁ³ÌáÈ¡ÌØÕ÷ÏòÁ¿
+3. **ÏàËÆ¶È¼ÆËã**: ¼ÆËãÓëÄ¿±êÌØÕ÷µÄÅ·ÊÏ¾àÀë
+4. **Ä¿±êÑ¡Ôñ**: Ñ¡Ôñ¾àÀë×îÐ¡µÄÈËÁ³×÷Îª¸ú×ÙÄ¿±ê
+
+### ?? ³£¼ûÎÊÌâ
+- **ÎÊÌâ**: ÎóÊ¶±ðÆäËûÈËÁ³
+- **½â¾ö·½°¸**: 
+  - µ÷ÕûÅ·ÊÏ¾àÀëãÐÖµ `min_norm`
+  - Ê¹ÓÃ¸ßÖÊÁ¿µÄÄ¿±êÈËÁ³ÕÕÆ¬
+
+
+## ? ¿ìËÙ²¿Êð
+
+### ? »·¾³×¼±¸
+- Ubuntu 18.04/20.04 LTS
+- Luckfox-Pico SDK »·¾³
+- ½»²æ±àÒë¹¤¾ßÁ´
+
+### ? SDK »·¾³´î½¨
+²Î¿¼¹Ù·½ÎÄµµ: [Luckfox-Pico-SDK](https://wiki.luckfox.com/zh/Luckfox-Pico/Luckfox-Pico-SDK)
+
+### ? »ñÈ¡Ô´Âë
+```bash
+git clone git@github.com:Jay-ms/NetvedioAgent.git
+cd NetvedioAgent
+```
+
+### ?? ÅäÖÃ±àÒë
+ÐÞ¸Ä `CMakeLists.txt`:
+```cmake
+# ÉèÖÃÏîÄ¿Â·¾¶
+set(PROJECT_DIR "/your/project/path/NetvedioAgent")
+
+# ÉèÖÃ½»²æ±àÒëÆ÷
+set(CMAKE_C_COMPILER "/your/toolchain/path/arm-rockchip830-linux-uclibcgnueabihf-gcc")
+set(CMAKE_CXX_COMPILER "/your/toolchain/path/arm-rockchip830-linux-uclibcgnueabihf-g++")
+```
+
+### ?? ±àÒëÏîÄ¿
+```bash
+chmod +x make.sh
+./make.sh
+```
+
+### ? ²¿Êðµ½Éè±¸
+```bash
+# ´«Êä¿ÉÖ´ÐÐÎÄ¼þ
+scp NetvedioAgent root@[Éè±¸IP]:/
+
+# ´«ÊäÄ£ÐÍÎÄ¼þ
+scp -r model root@[Éè±¸IP]:/
+
+# Ìæ»»Ä¿±êÈËÁ³Í¼Æ¬
+scp your_target_face.jpg root@[Éè±¸IP]:/model/test.jpg
+```
+
+### ?? ÔËÐÐÏµÍ³
+```bash
+ssh root@[Éè±¸IP]
+./NetvedioAgent ./model/RetinaFace.rknn ./model/mobilefacenet.rknn ./model/test.jpg
+```
+
+### ? ÑéÖ¤²¿Êð
+- **RTSP ÊÓÆµÁ÷**: `rtsp://[Éè±¸IP]:8554/live`
+- **TCP ¿ØÖÆ¶Ë¿Ú**: `[Éè±¸IP]:8080`
+
+---
+
+## ? ¿ªÔ´Ð­Òé
+
+±¾ÏîÄ¿²ÉÓÃ [MIT License](https://opensource.org/licenses/MIT) ¿ªÔ´Ð­Òé¡£
+
+---
+
+<div align="center">
+  
+### ? Èç¹ûÕâ¸öÏîÄ¿¶ÔÄãÓÐ°ïÖú£¬Çë¸ø¸ö Star Ö§³ÖÒ»ÏÂ£¡
+
+**? ÏîÄ¿µØÖ·**: [NetvedioAgent](https://github.com/Jay-ms/NetvedioAgent)
+
+</div>
